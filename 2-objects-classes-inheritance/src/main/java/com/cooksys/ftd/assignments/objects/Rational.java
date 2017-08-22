@@ -14,8 +14,16 @@ public class Rational implements IRational {
      * @param denominator the denominator of the rational value
      * @throws IllegalArgumentException if the given denominator is 0
      */
+	
+	private int numerator;
+	private int denominator;
+	
     public Rational(int numerator, int denominator) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        if(denominator == 0)
+        	throw new IllegalArgumentException();
+        
+        this.numerator = numerator;
+        this.denominator = denominator;
     }
 
     /**
@@ -23,7 +31,8 @@ public class Rational implements IRational {
      */
     @Override
     public int getNumerator() {
-        throw new NotImplementedException();
+        return numerator;
+    	
     }
 
     /**
@@ -31,7 +40,7 @@ public class Rational implements IRational {
      */
     @Override
     public int getDenominator() {
-        throw new NotImplementedException();
+        return denominator;
     }
 
     /**
@@ -47,7 +56,11 @@ public class Rational implements IRational {
      */
     @Override
     public Rational construct(int numerator, int denominator) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        if(denominator == 0)
+        	throw new IllegalArgumentException();
+        
+        Rational rational = new Rational(numerator, denominator);
+        return rational;
     }
 
     /**
@@ -58,7 +71,15 @@ public class Rational implements IRational {
      */
     @Override
     public boolean equals(Object obj) {
-        throw new NotImplementedException();
+        if(obj == this)
+        	return true;
+        
+        if(!(obj instanceof Rational))
+        	return false;
+        
+        Rational r  = (Rational)obj;
+        return Integer.compare(numerator, r.numerator) == 0
+        		&& Integer.compare(denominator, r.denominator) == 0;
     }
 
     /**
@@ -70,6 +91,12 @@ public class Rational implements IRational {
      */
     @Override
     public String toString() {
-        throw new NotImplementedException();
+        String positive = numerator + "/" + denominator;
+        String negative = -1 * numerator + "/" + denominator;
+        
+    	if (this.numerator < 0 || this.denominator < 0)
+        	return negative;
+    	
+    	return positive;
     }
 }

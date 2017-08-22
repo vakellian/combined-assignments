@@ -11,8 +11,20 @@ public class SimplifiedRational implements IRational {
      * @return the greatest common denominator, or shared factor, of `a` and `b`
      * @throws IllegalArgumentException if a <= 0 or b < 0
      */
+	private int numerator;
+	private int denominator;
+	
     public static int gcd(int a, int b) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        if (a <= 0 || b < 0)
+        	throw new IllegalArgumentException();
+                
+        if(b==0)
+        	return a;
+        
+        return gcd(b, a%b);
+        
+        //return b == 0 ? a : gcd(b, a % b); // Not bad for one line of code :)
+        
     }
 
     /**
@@ -29,7 +41,12 @@ public class SimplifiedRational implements IRational {
      * @throws IllegalArgumentException if the given denominator is 0
      */
     public static int[] simplify(int numerator, int denominator) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        if(denominator == 0)
+        	throw new IllegalArgumentException();
+        
+        int gcd = gcd(Math.abs(numerator), Math.abs(denominator));
+        int [] fraction = {numerator/gcd, denominator/gcd};
+        return fraction;
     }
 
     /**
@@ -53,7 +70,7 @@ public class SimplifiedRational implements IRational {
      */
     @Override
     public int getNumerator() {
-        throw new NotImplementedException();
+        return numerator;
     }
 
     /**
@@ -61,7 +78,7 @@ public class SimplifiedRational implements IRational {
      */
     @Override
     public int getDenominator() {
-        throw new NotImplementedException();
+        return denominator;
     }
 
     /**
@@ -88,7 +105,15 @@ public class SimplifiedRational implements IRational {
      */
     @Override
     public boolean equals(Object obj) {
-        throw new NotImplementedException();
+    	if(obj == this)
+        	return true;
+        
+        if(!(obj instanceof Rational))
+        	return false;
+        
+        SimplifiedRational sr  = (SimplifiedRational)obj;
+        return Integer.compare(numerator, sr.numerator) == 0
+        		&& Integer.compare(denominator, sr.denominator) == 0;
     }
 
     /**
