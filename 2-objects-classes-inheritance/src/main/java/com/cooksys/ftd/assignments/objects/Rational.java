@@ -71,7 +71,14 @@ public class Rational implements IRational {
      */
     @Override
     public boolean equals(Object obj) {
-        if(obj == this)
+        
+    	if(obj instanceof Rational)
+    		return obj.toString().equals(this.toString());
+    	
+    	return false;
+    	
+    	/*
+    	if(obj == this)
         	return true;
         
         if(!(obj instanceof Rational))
@@ -80,6 +87,7 @@ public class Rational implements IRational {
         Rational r  = (Rational)obj;
         return Integer.compare(numerator, r.numerator) == 0
         		&& Integer.compare(denominator, r.denominator) == 0;
+        */		
     }
 
     /**
@@ -93,10 +101,23 @@ public class Rational implements IRational {
     public String toString() {
         String positive = numerator + "/" + denominator;
         String negative = -1 * numerator + "/" + denominator;
+        String negative2 = -1* numerator + "/" + -1*denominator;
+        String negative3 = -1 * numerator + "/" + -1*denominator;
         
-    	if (this.numerator < 0 || this.denominator < 0)
-        	return negative;
+    	if (this.numerator < 0 && this.denominator >= 0){
+        	//System.out.println("negative" + negative);
+    		return positive;
+    	}
     	
+    	if(this.numerator >= 0 && this.denominator < 0) {
+    		return negative2;
+    	}
+    	
+    	if(this.numerator < 0 && this.denominator < 0) {
+    		return negative3;
+    	}
+    	
+    	//System.out.println("positive" + positive);	
     	return positive;
     }
 }

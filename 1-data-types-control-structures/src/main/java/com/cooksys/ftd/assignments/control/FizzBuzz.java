@@ -130,7 +130,7 @@ public class FizzBuzz {
 	 * the relevant messages to sysout
 	 */
 	public static void main(String[] args) {
-		throw new NotImplementedException();
+		System.out.println(messages(1, 115));
 	}
 
 }
