@@ -100,19 +100,18 @@ public class Rational implements IRational {
     @Override
     public String toString() {
         String positive = numerator + "/" + denominator;
-        String negative = -1 * numerator + "/" + denominator;
-        String negative2 = -1* numerator + "/" + -1*denominator;
+        String negative = -1* numerator + "/" + -1*denominator;
         
     	if (this.numerator < 0 && this.denominator >= 0){
     		return positive;
     	}
     	
     	if(this.numerator >= 0 && this.denominator < 0) {
-    		return negative2;
+    		return negative;
     	}
     	
     	if(this.numerator < 0 && this.denominator < 0) {
-    		return negative2;
+    		return negative;
     	}
     		
     	return positive;
