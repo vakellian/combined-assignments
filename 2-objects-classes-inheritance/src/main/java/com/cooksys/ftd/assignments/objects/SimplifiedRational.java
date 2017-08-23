@@ -45,8 +45,8 @@ public class SimplifiedRational implements IRational {
         	throw new IllegalArgumentException();
         
         int frac = gcd(Math.abs(numerator), Math.abs(denominator));
-        int [] fraction = {numerator/frac, denominator/frac};
-        return fraction;
+        int [] simplifiedFraction = {numerator/frac, denominator/frac};
+        return simplifiedFraction;
     }
 
     /**
