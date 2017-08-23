@@ -138,8 +138,7 @@ public class SimplifiedRational implements IRational {
     public String toString() {
     	  String positive = numerator + "/" + denominator;
           String negative = -1 * numerator + "/" + denominator;
-          String negative2 = -1* numerator + "/" + -1*denominator;
-          String negative3 = -1 * numerator + "/" + -1*denominator;
+          String negative2 = -1* numerator + "/" + -1*denominator;         
           
       	if (this.numerator < 0 && this.denominator >= 0){
       		return positive;
@@ -150,7 +149,7 @@ public class SimplifiedRational implements IRational {
       	}
       	
       	if(this.numerator < 0 && this.denominator < 0) {
-      		return negative3;
+      		return negative2;
       	}
       	
       	return positive;
