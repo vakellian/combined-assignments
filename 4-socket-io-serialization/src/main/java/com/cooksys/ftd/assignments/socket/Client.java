@@ -1,5 +1,14 @@
 package com.cooksys.ftd.assignments.socket;
 
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+import javax.xml.bind.JAXBException;
+
+import com.cooksys.ftd.assignments.socket.model.Config;
+import com.cooksys.ftd.assignments.socket.model.Student;
+
 public class Client {
 
     /**
@@ -12,6 +21,25 @@ public class Client {
      * over the socket as xml, and should unmarshal that object before printing its details to the console.
      */
     public static void main(String[] args) {
-        // TODO
+        
+    	//File file = new File("config.xml");
+    	
+    	Config config = Utils.loadConfig("C:/Users/ftd-1/code/combined-assignments/4-socket-io-serialization/config/config.xml", Utils.createJAXBContext());
+    	try (Socket client = new Socket(config.getRemote().getHost(), config.getRemote().getPort());){
+			
+			Student student = (Student) Utils.createJAXBContext().createUnmarshaller().unmarshal(client.getInputStream());
+			System.out.println(student);
+		} catch (JAXBException e) {
+			e.printStackTrace();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+    	
+    	
     }
+    
 }
